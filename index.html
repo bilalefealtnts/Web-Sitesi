@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MovieVerse | Sınırsız Sinema Deneyimi</title>
+  <style>
+    /* GENEL */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #0d0d0d;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    /* HEADER */
+    .site-header {
+      background-color: #0a0a0a;
+      box-shadow: 0 2px 10px rgba(255, 0, 0, 0.15);
+      border-bottom: 2px solid #1a1a1a;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #ff3333;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px rgba(255, 51, 51, 0.4);
+    }
+
+    /* NAVBAR */
+    .nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav a {
+      color: #f5f5f5;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 5px;
+      transition: color 0.3s;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #ff3333;
+      transition: width 0.3s ease-in-out;
+      box-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav a:hover {
+      color: #ff3333;
+    }
+
+    .nav a.active::after {
+      width: 100%;
+      background-color: #ff3333;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+        url("https://images.pexels.com/photos/7991373/pexels-photo-7991373.jpeg") center/cover no-repeat;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      color: #fff;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn.primary {
+      background-color: #ff3333;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(255, 51, 51, 0.4);
+    }
+
+    .btn.primary:hover {
+      background-color: #cc0000;
+      box-shadow: 0 0 18px rgba(255, 51, 51, 0.7);
+    }
+
+    .btn.outline {
+      border: 2px solid #ff3333;
+      color: #ff3333;
+    }
+
+    .btn.outline:hover {
+      background-color: #ff3333;
+      color: #fff;
+      box-shadow: 0 0 15px rgba(255, 51, 51, 0.6);
+    }
+
+    /* HAKKIMIZDA */
+    .about {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 80px 0;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h3 {
+      color: #ff3333;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      margin-bottom: 15px;
+      color: #ddd;
+    }
+
+    .about-image {
+      flex: 1;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
+    }
+
+    /* DİĞER KISIMLAR DEĞİŞMEDİ */
+    .how-it-works {
+      background-color: #141414;
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .how-it-works h3 {
+      color: #ff3333;
+      margin-bottom: 40px;
+      font-size: 28px;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .step {
+      background-color: #1f1f1f;
+      padding: 25px;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(255, 51, 51, 0.2);
+    }
+
+    .step h4 {
+      color: #ff3333;
+      margin-bottom: 10px;
+    }
+
+    .why-movieverse {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .why-movieverse h3 {
+      color: #ff3333;
+      margin-bottom: 40px;
+    }
+
+    .features {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .feature {
+      background-color: #1f1f1f;
+      padding: 25px;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(255, 51, 51, 0.2);
+    }
+
+    .feature h4 {
+      color: #ff3333;
+      margin-bottom: 10px;
+    }
+
+    .site-footer {
+      background-color: #0a0a0a;
+      color: #999;
+      text-align: center;
+      padding: 25px 0;
+      border-top: 2px solid #b30000;
+      margin-top: 80px;
+    }
+
+    .tagline {
+      color: #ff3333;
+      margin-top: 5px;
+      font-weight: 500;
+    }
+
+    @media (max-width: 900px) {
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+      .about-image {
+        order: -1;
+      }
+      .steps, .features {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo">MovieVerse</h1>
+      <nav class="nav">
+        <a href="index.html" class="active">Ana Sayfa</a>
+        <a href="films.html">Filmler</a>
+        <a href="plans.html">Planlar</a>
+        <a href="admin.html" class="admin-link">Yönetim Paneli</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Sinema Deneyimini Yeniden Keşfet</h2>
+      <p>MovieVerse, dünyanın dört bir yanındaki sinemaseverleri bir araya getiren güçlü bir dijital film platformudur. En yeni yapımları, zamansız klasikleri ve orijinal içerikleri tek bir evrende buluşturuyoruz.</p>
+      <div class="hero-buttons">
+        <a href="plans.html" class="btn primary">Planları Gör</a>
+        <a href="films.html" class="btn outline">Filmleri Keşfet</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HAKKIMIZDA -->
+  <section class="about container">
+    <div class="about-text">
+      <h3>MovieVerse Hakkında</h3>
+      <p>MovieVerse, film izleme deneyimini yeniden tanımlamak amacıyla kuruldu. Gelişmiş teknolojimiz sayesinde kullanıcılarımıza hızlı, güvenli ve sınırsız bir sinema dünyası sunuyoruz.</p>
+      <p>Her türden yapımı keşfedin, kendi film listenizi oluşturun ve sinemanın büyüsünü dilediğiniz her yerden yaşayın. MovieVerse — eğlencenin dijital adresi.</p>
+    </div>
+    <div class="about-image">
+      <img src="https://images.pexels.com/photos/3945316/pexels-photo-3945316.jpeg" alt="MovieVerse Hakkında" />
+    </div>
+  </section>
+
+  <!-- NASIL ÇALIŞIR -->
+  <section class="how-it-works">
+    <div class="container">
+      <h3>MovieVerse Nasıl Çalışır?</h3>
+      <div class="steps">
+        <div class="step">
+          <h4>1. Planını Seç</h4>
+          <p>Ücretsiz veya premium planlarımızdan birini seçerek anında erişim kazanın.</p>
+        </div>
+        <div class="step">
+          <h4>2. Kütüphaneyi Keşfet</h4>
+          <p>Binlerce film arasından tür, ülke veya yıl bazında arama yapın.</p>
+        </div>
+        <div class="step">
+          <h4>3. Keyfini Çıkar</h4>
+          <p>Reklamsız, yüksek çözünürlükte ve kesintisiz bir izleme deneyimi yaşayın.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEDEN MOVIEVERSE -->
+  <section class="why-movieverse">
+    <div class="container">
+      <h3>Neden MovieVerse?</h3>
+      <div class="features">
+        <div class="feature">
+          <h4>🎬 Geniş Film Arşivi</h4>
+          <p>Her türden binlerce film. Aksiyon, dram, korku, belgesel ve daha fazlası.</p>
+        </div>
+        <div class="feature">
+          <h4>⚡ Hızlı Erişim</h4>
+          <p>Optimize edilmiş altyapı ile yüksek hızda içerik yükleme ve izleme deneyimi.</p>
+        </div>
+        <div class="feature">
+          <h4>💎 Premium Kalite</h4>
+          <p>4K ve HDR desteğiyle en kaliteli görüntüleri evinizin rahatlığında izleyin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 MovieVerse. Tüm Hakları Saklıdır.</p>
+      <p class="tagline">MovieVerse — Sinema, Yeniden Doğdu.</p>
+    </div>
+  </footer>
+</body>
+</html>
