@@ -4,30 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Planlar | MovieVerse</title>
-  <style>
-    /* GENEL */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: "Poppins", sans-serif;
-    }
 
+  <!-- BOOTSTRAP -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <style>
     body {
       background-color: #0d0d0d;
       color: #f5f5f5;
       line-height: 1.6;
+      font-family: "Poppins", sans-serif;
     }
 
     a {
       text-decoration: none;
       color: inherit;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1300px;
-      margin: auto;
     }
 
     /* HEADER */
@@ -41,12 +35,6 @@
       z-index: 1000;
     }
 
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
     .logo {
       color: #ff3333;
       font-size: 28px;
@@ -55,21 +43,18 @@
       text-shadow: 0 0 8px rgba(255, 51, 51, 0.4);
     }
 
-    /* NAVBAR */
-    .nav {
-      display: flex;
-      gap: 25px;
-    }
-
-    .nav a {
-      color: #f5f5f5;
-      font-weight: 500;
+    .nav-link {
+      color: #f5f5f5 !important;
       position: relative;
       padding-bottom: 5px;
-      transition: color 0.3s;
+      font-weight: 500;
     }
 
-    .nav a::after {
+    .nav-link:hover {
+      color: #ff3333 !important;
+    }
+
+    .nav-link::after {
       content: "";
       position: absolute;
       bottom: 0;
@@ -81,54 +66,20 @@
       box-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
     }
 
-    .nav a:hover::after {
+    .nav-link:hover::after,
+    .nav-link.active::after {
       width: 100%;
     }
 
-    .nav a:hover {
-      color: #ff3333;
-    }
-
-    .nav a.active::after {
-      width: 100%;
-      background-color: #ff3333;
-    }
-
-    /* PLANLAR SAYFASI */
-    main {
-      padding: 80px 0;
-      min-height: 80vh;
-    }
-
-    h2 {
-      color: #ff3333;
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 32px;
-      text-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
-    }
-
-    .info-text {
-      text-align: center;
-      color: #ccc;
-      margin-bottom: 50px;
-    }
-
-    .plans-grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
-
+    /* PLAN CARD */
     .plan-card {
       background-color: #1a1a1a;
       border-radius: 12px;
-      width: 320px;
       padding: 30px;
       text-align: center;
       box-shadow: 0 0 15px rgba(255, 51, 51, 0.2);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
     }
 
     .plan-card:hover {
@@ -153,17 +104,18 @@
       margin-bottom: 25px;
     }
 
-    .btn {
-      display: inline-block;
+    .btn-custom {
       padding: 10px 24px;
       border-radius: 8px;
       font-weight: 600;
-      transition: 0.3s;
       border: 2px solid #ff3333;
+      background: transparent;
       color: #ff3333;
+      transition: 0.3s;
+      display: inline-block;
     }
 
-    .btn:hover {
+    .btn-custom:hover {
       background-color: #ff3333;
       color: #fff;
       box-shadow: 0 0 15px rgba(255, 51, 51, 0.6);
@@ -186,46 +138,73 @@
     }
   </style>
 </head>
+
 <body>
-  <!-- HEADER -->
+
+  <!-- NAVBAR -->
   <header class="site-header">
-    <div class="container header-inner">
-      <h1 class="logo">MovieVerse</h1>
-      <nav class="nav">
-        <a href="index.html">Ana Sayfa</a>
-        <a href="films.html">Filmler</a>
-        <a href="plans.html" class="active">Planlar</a>
-        <a href="admin.html" class="admin-link">Yönetim Paneli</a>
-      </nav>
-    </div>
+    <nav class="navbar navbar-expand-lg container">
+      <a class="navbar-brand logo" href="#">MovieVerse</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#menu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="menu">
+        <ul class="navbar-nav gap-3">
+          <li class="nav-item"><a class="nav-link" href="index.html">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="films.html">Filmler</a></li>
+          <li class="nav-item"><a class="nav-link active" href="plans.html">Planlar</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin.html">Yönetim Paneli</a></li>
+        </ul>
+      </div>
+    </nav>
   </header>
 
-  <!-- ANA İÇERİK -->
-  <main class="container">
+  <!-- MAIN CONTENT -->
+  <main class="container py-5">
     <h2>Planlar</h2>
-    <p class="info-text">Size en uygun planı seçerek MovieVerse dünyasına katılın.</p>
+    <p class="text-center text-secondary mb-5">
+      Size en uygun planı seçerek MovieVerse dünyasına katılın.
+    </p>
 
-    <div class="plans-grid">
-      <div class="plan-card">
-        <h3>🎥 Ücretsiz Plan</h3>
-        <p>Temel özelliklere erişim. Reklamlı izleme deneyimi.</p>
-        <div class="price">₺0 / ay</div>
-        <a href="#" class="btn">Hemen Başla</a>
+    <div class="row justify-content-center g-4">
+
+      <!-- ÜCRETSİZ PLAN -->
+      <div class="col-12 col-sm-6 col-lg-4 d-flex">
+        <div class="plan-card w-100">
+          <h3>🎥 Ücretsiz Plan</h3>
+          <p>Temel özelliklere erişim. Reklamlı izleme deneyimi.</p>
+          <div class="price">₺0 / ay</div>
+          <a href="#" class="btn-custom">Hemen Başla</a>
+        </div>
       </div>
 
-      <div class="plan-card">
-        <h3>💎 Premium Plan</h3>
-        <p>Reklamsız izleme, 4K kalite, özel içeriklere tam erişim.</p>
-        <div class="price">₺49 / ay</div>
-        <a href="#" class="btn">Yükselt</a>
+      <!-- PREMIUM PLAN -->
+      <div class="col-12 col-sm-6 col-lg-4 d-flex">
+        <div class="plan-card w-100">
+          <h3>💎 Premium Plan</h3>
+          <p>Reklamsız izleme, 4K kalite, özel içeriklere tam erişim.</p>
+          <div class="price">₺49 / ay</div>
+          <a href="#" class="btn-custom">Yükselt</a>
+        </div>
       </div>
 
-      <div class="plan-card">
-        <h3>🔥 Aile Planı</h3>
-        <p>5 cihaza kadar kullanım, çocuk profili ve öncelikli destek.</p>
-        <div class="price">₺79 / ay</div>
-        <a href="#" class="btn">Katıl</a>
+      <!-- AİLE PLAN -->
+      <div class="col-12 col-sm-6 col-lg-4 d-flex">
+        <div class="plan-card w-100">
+          <h3>🔥 Aile Planı</h3>
+          <p>5 cihaza kadar kullanım, çocuk profili ve öncelikli destek.</p>
+          <div class="price">₺79 / ay</div>
+          <a href="#" class="btn-custom">Katıl</a>
+        </div>
       </div>
+
     </div>
   </main>
 
@@ -236,5 +215,8 @@
       <p class="tagline">MovieVerse — Sinema, Yeniden Doğdu.</p>
     </div>
   </footer>
+
+  <!-- BOOTSTRAP JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
