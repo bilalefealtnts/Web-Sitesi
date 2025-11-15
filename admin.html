@@ -4,113 +4,286 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yönetim Paneli | MovieVerse</title>
+
+  <!-- BOOTSTRAP -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
   <style>
-    /* GENEL */
-    *{box-sizing:border-box;margin:0;padding:0;font-family:"Poppins",sans-serif}
-    body{background:#0d0d0d;color:#f5f5f5;line-height:1.6}
-    a{color:inherit;text-decoration:none}
-    .container{width:90%;max-width:1300px;margin:auto}
+    body {
+      background: #0d0d0d;
+      color: #f5f5f5;
+      line-height: 1.6;
+      font-family: "Poppins", sans-serif;
+    }
 
-    /* HEADER (index ile birebir) */
-    .site-header{background:#0a0a0a;box-shadow:0 2px 10px rgba(255,0,0,.15);border-bottom:2px solid #1a1a1a;padding:20px 0;position:sticky;top:0;z-index:1000}
-    .header-inner{display:flex;justify-content:space-between;align-items:center}
-    .logo{color:#ff3333;font-size:28px;font-weight:bold;letter-spacing:1px;text-shadow:0 0 8px rgba(255,51,51,.4)}
-    .nav{display:flex;gap:25px}
-    .nav a{color:#f5f5f5;font-weight:500;position:relative;padding-bottom:5px;transition:.3s;text-decoration:none}
-    .nav a::after{content:"";position:absolute;bottom:0;left:0;width:0;height:2px;background:#ff3333;transition:width .3s ease-in-out;box-shadow:0 0 10px rgba(255,51,51,.5)}
-    .nav a:hover::after{width:100%}
-    .nav a:hover{color:#ff3333}
-    .nav a.active::after{width:100%}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    /* SAYFA */
-    main{padding:80px 0;min-height:80vh}
-    h2{color:#ff3333;text-align:center;margin-bottom:20px;font-size:32px;text-shadow:0 0 15px rgba(255,51,51,.3)}
+    /* HEADER */
+    .site-header {
+      background: #0a0a0a;
+      box-shadow: 0 2px 10px rgba(255,0,0,.15);
+      border-bottom: 2px solid #1a1a1a;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-    /* FORM BLOKU */
-    .admin-section{background:#1a1a1a;border-radius:12px;padding:40px;box-shadow:0 0 15px rgba(255,51,51,.15);width:100%;max-width:900px;margin:0 auto 50px}
-    .admin-section h3{color:#ff3333;margin-bottom:20px;text-align:center}
-    form{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
-    .full{grid-column:1/-1}
-    label{font-weight:600;color:#ddd;font-size:14px}
-    input,textarea{width:100%;padding:12px;border:1px solid #333;border-radius:8px;background:#0d0d0d;color:#fff;transition:.3s}
-    input:focus,textarea:focus{border-color:#ff3333;box-shadow:0 0 10px rgba(255,51,51,.3)}
-    textarea{resize:vertical;min-height:90px}
-    .hint{color:#aaa;font-size:12px;margin-top:-10px}
+    .logo {
+      color: #ff3333;
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 0 0 8px rgba(255,51,51,.4);
+    }
 
-    .btn-row{display:flex;gap:10px}
-    .btn{display:inline-block;padding:10px 18px;border-radius:8px;font-weight:600;transition:.3s;border:2px solid #ff3333;color:#ff3333;background:none;cursor:pointer}
-    .btn:hover{background:#ff3333;color:#fff;box-shadow:0 0 15px rgba(255,51,51,.6)}
-    .btn.secondary{border-color:#666;color:#ccc}
-    .btn.secondary:hover{background:#444;color:#fff;box-shadow:none}
+    .nav-link {
+      color: #f5f5f5 !important;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 5px;
+    }
 
-    /* LİSTE */
-    .film-list{width:100%;max-width:900px;margin:0 auto}
-    .film-item{background:#0d0d0d;border:1px solid #333;border-radius:10px;padding:18px;margin-bottom:14px;display:grid;grid-template-columns:1fr auto;gap:10px;transition:.3s}
-    .film-item:hover{border-color:#ff3333;box-shadow:0 0 12px rgba(255,51,51,.2)}
-    .film-meta{color:#ddd}
-    .film-meta small{color:#aaa;display:block;margin-top:4px;word-break:break-word}
-    .film-actions{display:flex;align-items:center;gap:8px}
-    .edit-btn,.delete-btn{background:none;padding:8px 12px;border-radius:8px;cursor:pointer;transition:.3s;font-weight:600;border:2px solid}
-    .edit-btn{border-color:#ffaa33;color:#ffaa33}
-    .edit-btn:hover{background:#ffaa33;color:#1a1a1a}
-    .delete-btn{border-color:#ff3333;color:#ff3333}
-    .delete-btn:hover{background:#ff3333;color:#fff}
+    .nav-link:hover {
+      color: #ff3333 !important;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: #ff3333;
+      transition: .3s;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* ADMIN FORM BLOCK */
+    .admin-section {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 0 15px rgba(255,51,51,.15);
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 50px;
+    }
+
+    .admin-section h3 {
+      color: #ff3333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-control {
+      background: #0d0d0d;
+      border-color: #333;
+      color: #fff;
+      border-radius: 8px;
+    }
+
+    .form-control:focus {
+      border-color: #ff3333;
+      box-shadow: 0 0 10px rgba(255,51,51,.3);
+    }
+
+    .hint {
+      color: #aaa;
+      font-size: 12px;
+      margin-top: -8px;
+    }
+
+    /* BUTTONS */
+    .btn-custom {
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      border: 2px solid #ff3333;
+      background: none;
+      color: #ff3333;
+      transition: 0.3s;
+    }
+
+    .btn-custom:hover {
+      background: #ff3333;
+      color: #fff;
+      box-shadow: 0 0 15px rgba(255,51,51,.6);
+    }
+
+    .btn-secondary-custom {
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      border: 2px solid #666;
+      background: none;
+      color: #ccc;
+      transition: 0.3s;
+    }
+
+    .btn-secondary-custom:hover {
+      background: #444;
+      color: #fff;
+    }
+
+    /* FILM LIST */
+    .film-item {
+      background: #0d0d0d;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 14px;
+      transition: 0.3s;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .film-item:hover {
+      border-color: #ff3333;
+      box-shadow: 0 0 12px rgba(255,51,51,.2);
+    }
+
+    .film-meta small {
+      color: #aaa;
+      display: block;
+      margin-top: 4px;
+      word-break: break-word;
+    }
+
+    .edit-btn, .delete-btn {
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      border: 2px solid;
+      background: none;
+      transition: 0.3s;
+    }
+
+    .edit-btn {
+      border-color: #ffaa33;
+      color: #ffaa33;
+    }
+
+    .edit-btn:hover {
+      background: #ffaa33;
+      color: #1a1a1a;
+    }
+
+    .delete-btn {
+      border-color: #ff3333;
+      color: #ff3333;
+    }
+
+    .delete-btn:hover {
+      background: #ff3333;
+      color: #fff;
+    }
 
     /* FOOTER */
-    .site-footer{background:#0a0a0a;color:#999;text-align:center;padding:25px 0;border-top:2px solid #b30000;margin-top:80px}
-    .tagline{color:#ff3333;margin-top:5px;font-weight:500}
+    .site-footer {
+      background: #0a0a0a;
+      color: #999;
+      text-align: center;
+      padding: 25px 0;
+      border-top: 2px solid #b30000;
+      margin-top: 80px;
+    }
+
+    .tagline {
+      color: #ff3333;
+      font-weight: 500;
+    }
   </style>
 </head>
+
 <body>
-  <!-- HEADER -->
+
+  <!-- NAVBAR -->
   <header class="site-header">
-    <div class="container header-inner">
-      <h1 class="logo">MovieVerse</h1>
-      <nav class="nav">
-        <a href="index.html">Ana Sayfa</a>
-        <a href="films.html">Filmler</a>
-        <a href="plans.html">Planlar</a>
-        <a href="admin.html" class="active">Yönetim Paneli</a>
-      </nav>
-    </div>
+    <nav class="navbar navbar-expand-lg container">
+      <a class="navbar-brand logo" href="#">MovieVerse</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#menu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="menu">
+        <ul class="navbar-nav gap-3">
+          <li class="nav-item"><a class="nav-link" href="index.html">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="films.html">Filmler</a></li>
+          <li class="nav-item"><a class="nav-link" href="plans.html">Planlar</a></li>
+          <li class="nav-item"><a class="nav-link active" href="admin.html">Yönetim Paneli</a></li>
+        </ul>
+      </div>
+    </nav>
   </header>
 
-  <!-- ANA İÇERİK -->
-  <main class="container">
-    <h2>Yönetim Paneli</h2>
+  <!-- MAIN -->
+  <main class="container py-5">
+    <h2 class="text-center mb-4" style="color:#ff3333;">Yönetim Paneli</h2>
 
-    <section class="admin-section">
+    <!-- FORM -->
+    <section class="admin-section mb-5">
       <h3>🎬 Film Ekle / Düzenle</h3>
-      <form id="filmForm">
-        <div>
-          <label for="title">Film Adı</label>
-          <input type="text" id="title" required placeholder="Örn: Interstellar">
+
+      <form id="filmForm" class="row g-4">
+
+        <div class="col-md-6">
+          <label class="form-label" for="title">Film Adı</label>
+          <input class="form-control" id="title" required placeholder="Örn: Interstellar">
         </div>
-        <div>
-          <label for="image">Poster URL</label>
-          <input type="url" id="image" placeholder="https://...">
+
+        <div class="col-md-6">
+          <label class="form-label" for="image">Poster URL</label>
+          <input class="form-control" id="image" placeholder="https://...">
         </div>
-        <div class="full">
-          <label for="link">Tıklanınca Gidilecek Link (Yeni Sekme)</label>
-          <input type="url" id="link" placeholder="https://imdb.com/title/...">
+
+        <div class="col-12">
+          <label class="form-label" for="link">Tıklanınca Gidilecek Link</label>
+          <input class="form-control" id="link" placeholder="https://imdb.com/...">
         </div>
-        <div class="full">
-          <label for="genres">Türler</label>
-          <input type="text" id="genres" placeholder="Örn: Bilim Kurgu, Dram">
-          <div class="hint">Birden fazla türü virgülle ayır: Aksiyon, Macera, Bilim Kurgu</div>
+
+        <div class="col-12">
+          <label class="form-label" for="genres">Türler</label>
+          <input class="form-control" id="genres" placeholder="Bilim Kurgu, Dram">
+          <div class="hint">Türleri virgülle ayır: Aksiyon, Dram, Bilim Kurgu</div>
         </div>
-        <div class="full">
-          <label for="description">Açıklama</label>
-          <textarea id="description" required placeholder="Kısa bir açıklama..."></textarea>
+
+        <div class="col-12">
+          <label class="form-label" for="description">Açıklama</label>
+          <textarea class="form-control" id="description" placeholder="Kısa açıklama..." required></textarea>
         </div>
-        <div class="btn-row full">
-          <button type="submit" id="submitBtn" class="btn">Filmi Ekle</button>
-          <button type="button" id="cancelEditBtn" class="btn secondary" style="display:none;">Düzenlemeyi İptal Et</button>
+
+        <div class="col-12 d-flex gap-2">
+          <button type="submit" id="submitBtn" class="btn-custom">Filmi Ekle</button>
+          <button type="button" id="cancelEditBtn" class="btn-secondary-custom" style="display:none;">
+            Düzenlemeyi İptal Et
+          </button>
         </div>
+
       </form>
     </section>
 
-    <section class="film-list" id="filmList"></section>
+    <!-- FILM LIST -->
+    <section id="filmList"></section>
   </main>
 
   <!-- FOOTER -->
@@ -121,6 +294,7 @@
     </div>
   </footer>
 
+  <!-- JS (Form & LocalStorage) -->
   <script>
     const LS_KEY = "films";
     const form = document.getElementById("filmForm");
@@ -137,100 +311,122 @@
     let editIndex = null;
 
     const getFilms = () => JSON.parse(localStorage.getItem(LS_KEY)) || [];
-    const saveFilms = (arr) => localStorage.setItem(LS_KEY, JSON.stringify(arr));
+    const saveFilms = arr => localStorage.setItem(LS_KEY, JSON.stringify(arr));
 
     function renderList() {
       const films = getFilms();
       filmListEl.innerHTML = "";
 
       if (!films.length) {
-        filmListEl.innerHTML = "<p style='text-align:center;color:#bbb;'>Henüz film eklenmemiş.</p>";
+        filmListEl.innerHTML =
+          "<p class='text-center text-secondary'>Henüz film eklenmemiş.</p>";
         return;
       }
 
       films.forEach((film, i) => {
+        const genresText = film.genres?.join(", ") || "—";
+
         const item = document.createElement("div");
         item.className = "film-item";
-        const genresText = (film.genres && film.genres.length) ? film.genres.join(", ") : "—";
+
         item.innerHTML = `
           <div class="film-meta">
-            <strong>${film.title || "İsimsiz"}</strong>
+            <strong>${film.title}</strong>
             <small>Türler: ${genresText}</small>
-            <small>Link: ${film.link ? `<a href="${film.link}" target="_blank" rel="noopener noreferrer" style="color:#9cf;text-decoration:none;">${film.link}</a>` : "<em>yok</em>"}</small>
-            <small>Poster: ${film.image ? `<a href="${film.image}" target="_blank" rel="noopener noreferrer" style="color:#9cf;text-decoration:none;">görüntüle</a>` : "<em>yok</em>"}</small>
-            <small>Açıklama: ${film.description || "-"}</small>
+            <small>Link: ${
+              film.link
+                ? `<a href="${film.link}" target="_blank" style="color:#9cf">Git</a>`
+                : "<em>yok</em>"
+            }</small>
+            <small>Poster: ${
+              film.image
+                ? `<a href="${film.image}" target="_blank" style="color:#9cf">Görüntüle</a>`
+                : "<em>yok</em>"
+            }</small>
+            <small>Açıklama: ${film.description}</small>
           </div>
-          <div class="film-actions">
+
+          <div class="d-flex align-items-center gap-2">
             <button class="edit-btn" data-i="${i}">Düzenle</button>
             <button class="delete-btn" data-i="${i}">Sil</button>
           </div>
         `;
+
         filmListEl.appendChild(item);
       });
 
-      filmListEl.querySelectorAll(".delete-btn").forEach(btn=>{
-        btn.addEventListener("click", e=>{
-          const idx = +e.currentTarget.dataset.i;
-          const films = getFilms();
-          films.splice(idx,1);
-          saveFilms(films);
+      // DELETE
+      document.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.onclick = () => {
+          const idx = +btn.dataset.i;
+          const f = getFilms();
+          f.splice(idx, 1);
+          saveFilms(f);
           renderList();
           resetForm();
-        });
+        };
       });
 
-      filmListEl.querySelectorAll(".edit-btn").forEach(btn=>{
-        btn.addEventListener("click", e=>{
-          const idx = +e.currentTarget.dataset.i;
-          const film = getFilms()[idx];
+      // EDIT
+      document.querySelectorAll(".edit-btn").forEach(btn => {
+        btn.onclick = () => {
+          const idx = +btn.dataset.i;
+          const f = getFilms()[idx];
+
           editIndex = idx;
-          titleEl.value  = film.title || "";
-          imageEl.value  = film.image || "";
-          linkEl.value   = film.link  || "";
-          genresEl.value = (film.genres || []).join(", ");
-          descEl.value   = film.description || "";
+          titleEl.value = f.title;
+          imageEl.value = f.image;
+          linkEl.value  = f.link;
+          genresEl.value= f.genres.join(", ");
+          descEl.value  = f.description;
+
           submitBtn.textContent = "Filmi Güncelle";
           cancelEditBtn.style.display = "inline-block";
-          window.scrollTo({top:0,behavior:"smooth"});
-        });
+
+          scrollTo({ top: 0, behavior: "smooth" });
+        };
       });
     }
 
-    function resetForm(){
+    function resetForm() {
       editIndex = null;
       form.reset();
       submitBtn.textContent = "Filmi Ekle";
       cancelEditBtn.style.display = "none";
     }
 
-    form.addEventListener("submit", (e)=>{
+    form.onsubmit = e => {
       e.preventDefault();
+
       const genres = genresEl.value
         .split(",")
-        .map(g=>g.trim())
+        .map(x => x.trim())
         .filter(Boolean);
 
       const newFilm = {
         title: titleEl.value.trim(),
         image: imageEl.value.trim(),
-        link : linkEl.value.trim(),
+        link:  linkEl.value.trim(),
         genres,
         description: descEl.value.trim(),
       };
 
       const films = getFilms();
+
       if (editIndex === null) films.push(newFilm);
       else films[editIndex] = newFilm;
 
       saveFilms(films);
       renderList();
       resetForm();
-    });
+    };
 
-    cancelEditBtn.addEventListener("click", resetForm);
+    cancelEditBtn.onclick = resetForm;
 
-    // init
     renderList();
   </script>
+
+  <!-- BOOTSTRAP JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
