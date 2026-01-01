@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giriş Yap | MovieVerse</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg container">
+      <a class="navbar-brand logo" href="index.html">MovieVerse</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="menu">
+        <ul class="navbar-nav gap-3">
+          <li class="nav-item"><a class="nav-link" href="index.html">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="films.html">Filmler</a></li>
+          <li class="nav-item"><a class="nav-link" href="plans.html">Planlar</a></li>
+          <li class="nav-item" id="loginNavItem">
+        <a class="nav-link" href="login.html">Giriş Yap</a>
+          </li>
+          <li class="nav-item" id="logoutNavItem" style="display:none;">
+  <a class="nav-link" href="#" id="logoutBtn">Çıkış</a>
+</li>
+
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container py-5">
+    <h2 class="page-title">Giriş Yap</h2>
+
+    <div class="admin-section">
+      <h3>🔐 Film İzlemek İçin Giriş Yapın</h3>
+
+      <div class="row g-3">
+        <div class="col-12">
+          <label class="form-label">E-posta</label>
+          <input id="email" class="form-control" type="email" placeholder="ornek@mail.com" />
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Şifre</label>
+          <input id="password" class="form-control" type="password" placeholder="••••••••" />
+        </div>
+
+        <div class="col-12 d-flex gap-2">
+          <button id="loginBtn" class="btn-custom" type="button">Giriş Yap</button>
+          <a class="btn-secondary-custom" href="register.html">Kayıt Ol</a>
+        </div>
+
+        <div class="col-12">
+          <div id="msg" class="text-center" style="margin-top:10px; color:#ff7777;"></div>
+        </div>
+
+        <div class="col-12">
+          <p class="hint text-center">
+            Not: Bu bir “frontend demo login”dir. Kullanıcılar localStorage’a kaydedilir.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 MovieVerse. Tüm Hakları Saklıdır.</p>
+      <p class="tagline">MovieVerse — Sinema, Yeniden Doğdu.</p>
+    </div>
+  </footer>
+
+  <script>
+    const USERS_KEY = "mv_users";
+    const SESSION_KEY = "mv_session";
+
+    function getUsers() {
+      return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+    }
+
+    function setSession(userEmail) {
+      localStorage.setItem(SESSION_KEY, JSON.stringify({
+        email: userEmail,
+        loginAt: Date.now()
+      }));
+    }
+
+    // Eğer zaten giriş yaptıysa direkt admin'e at
+    (function autoRedirectIfLoggedIn(){
+      const s = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
+      if (s && s.email) window.location.href = "films.html";
+    })();
+
+    document.getElementById("loginBtn").onclick = () => {
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const password = document.getElementById("password").value;
+
+      const msg = document.getElementById("msg");
+      msg.textContent = "";
+
+      if (!email || !password) {
+        msg.textContent = "E-posta ve şifre zorunlu.";
+        return;
+      }
+
+      const users = getUsers();
+      const found = users.find(u => u.email === email && u.password === password);
+
+      if (!found) {
+        msg.textContent = "E-posta veya şifre hatalı. (Ya da önce kayıt ol.)";
+        return;
+      }
+
+      setSession(email);
+      window.location.href = "films.html";
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+</body>
+</html>
