@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kayıt Ol | MovieVerse</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg container">
+      <a class="navbar-brand logo" href="index.html">MovieVerse</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="menu">
+        <ul class="navbar-nav gap-3">
+          <li class="nav-item"><a class="nav-link" href="index.html">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="films.html">Filmler</a></li>
+          <li class="nav-item"><a class="nav-link" href="plans.html">Planlar</a></li>
+          <li class="nav-item" id="loginNavItem">
+        <a class="nav-link" href="login.html">Giriş Yap</a>
+          </li>
+          <li class="nav-item" id="logoutNavItem" style="display:none;">
+            <a class="nav-link" href="#" id="logoutBtn">Çıkış</a>
+            </li>
+
+          
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container py-5">
+    <h2 class="page-title">Kayıt Ol</h2>
+
+    <div class="admin-section">
+      <h3>🧾 Yeni Hesap Oluştur</h3>
+
+      <div class="row g-3">
+        <div class="col-12">
+          <label class="form-label">E-posta</label>
+          <input id="email" class="form-control" type="email" placeholder="ornek@mail.com" />
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Şifre</label>
+          <input id="password" class="form-control" type="password" placeholder="En az 4 karakter" />
+          <div class="hint">Demo amaçlı basit kayıt. (Gerçekte şifre hashlenir.)</div>
+        </div>
+
+        <div class="col-12 d-flex gap-2">
+          <button id="registerBtn" class="btn-custom" type="button">Kayıt Ol</button>
+          <a class="btn-secondary-custom" href="login.html">Girişe Dön</a>
+        </div>
+
+        <div class="col-12">
+          <div id="msg" class="text-center" style="margin-top:10px; color:#ff7777;"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 MovieVerse. Tüm Hakları Saklıdır.</p>
+      <p class="tagline">MovieVerse — Sinema, Yeniden Doğdu.</p>
+    </div>
+  </footer>
+
+  <script>
+    const USERS_KEY = "mv_users";
+
+    function getUsers() {
+      return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+    }
+    function saveUsers(users) {
+      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    }
+
+    document.getElementById("registerBtn").onclick = () => {
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const password = document.getElementById("password").value;
+
+      const msg = document.getElementById("msg");
+      msg.textContent = "";
+
+      if (!email || !password) {
+        msg.textContent = "E-posta ve şifre zorunlu.";
+        return;
+      }
+      if (password.length < 4) {
+        msg.textContent = "Şifre en az 4 karakter olmalı.";
+        return;
+      }
+
+      const users = getUsers();
+      const exists = users.some(u => u.email === email);
+      if (exists) {
+        msg.textContent = "Bu e-posta zaten kayıtlı. Giriş yapmayı deneyin.";
+        return;
+      }
+
+      users.push({ email, password });
+      saveUsers(users);
+
+      // kayıt sonrası login'e yönlendir
+      window.location.href = "login.html";
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  const SESSION_KEY = "mv_session";
+
+  const loginItem  = document.getElementById("loginNavItem");
+  const logoutItem = document.getElementById("logoutNavItem");
+  const logoutBtn  = document.getElementById("logoutBtn");
+
+  const session = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
+
+  if (session && session.email) {
+    // giriş yapılmış
+    if (loginItem) loginItem.style.display = "none";
+    if (logoutItem) logoutItem.style.display = "block";
+  } else {
+    // giriş yapılmamış
+    if (loginItem) loginItem.style.display = "block";
+    if (logoutItem) logoutItem.style.display = "none";
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem(SESSION_KEY);
+      window.location.href = "login.html";
+    });
+  }
+</script>
+
+</body>
+</html>
