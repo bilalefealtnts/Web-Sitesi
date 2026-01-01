@@ -5,168 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MovieVerse | Sınırsız Sinema Deneyimi</title>
 
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <!-- BOOTSTRAP -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <style>
-    /* GENEL */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: "Poppins", sans-serif;
-    }
-
-    body {
-      background-color: #0d0d0d;
-      color: #f5f5f5;
-      line-height: 1.6;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* HEADER */
-    .site-header {
-      background-color: #0a0a0a;
-      box-shadow: 0 2px 10px rgba(255, 0, 0, 0.15);
-      border-bottom: 2px solid #1a1a1a;
-      padding: 20px 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo {
-      color: #ff3333;
-      font-size: 28px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-shadow: 0 0 8px rgba(255, 51, 51, 0.4);
-    }
-
-    /* NAV */
-    .nav-link {
-      color: #f5f5f5 !important;
-      position: relative;
-      padding-bottom: 5px;
-      transition: color 0.3s;
-    }
-
-    .nav-link:hover {
-      color: #ff3333 !important;
-    }
-
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background-color: #ff3333;
-      transition: width 0.3s ease-in-out;
-      box-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
-    }
-
-    .nav-link:hover::after,
-    .nav-link.active::after {
-      width: 100%;
-    }
-
-    /* HERO */
-    .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
-        url("https://images.pexels.com/photos/7991373/pexels-photo-7991373.jpeg")
-          center/cover no-repeat;
-      height: 90vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-    }
-
-    .hero h2 {
-      font-size: 42px;
-      color: #fff;
-      margin-bottom: 20px;
-      text-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
-    }
-
-    .hero p {
-      font-size: 18px;
-      color: #ccc;
-      margin-bottom: 30px;
-    }
-
-    .btn.primary {
-      background-color: #ff3333;
-      color: #fff;
-      box-shadow: 0 0 12px rgba(255, 51, 51, 0.4);
-      border: none;
-    }
-
-    .btn.primary:hover {
-      background-color: #cc0000;
-      box-shadow: 0 0 18px rgba(255, 51, 51, 0.7);
-    }
-
-    .btn.outline {
-      border: 2px solid #ff3333;
-      color: #ff3333;
-    }
-
-    .btn.outline:hover {
-      background-color: #ff3333;
-      color: #fff;
-      box-shadow: 0 0 15px rgba(255, 51, 51, 0.6);
-    }
-
-    /* ABOUT */
-    .about-image img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
-    }
-
-    /* CARDS */
-    .step,
-    .feature {
-      background-color: #1f1f1f;
-      padding: 25px;
-      border-radius: 10px;
-      width: 100%;
-      box-shadow: 0 0 10px rgba(255, 51, 51, 0.2);
-    }
-
-    .step h4,
-    .feature h4 {
-      color: #ff3333;
-      margin-bottom: 10px;
-    }
-
-    /* FOOTER */
-    .site-footer {
-      background-color: #0a0a0a;
-      color: #999;
-      text-align: center;
-      padding: 25px 0;
-      border-top: 2px solid #b30000;
-      margin-top: 80px;
-    }
-
-    .tagline {
-      color: #ff3333;
-      margin-top: 5px;
-      font-weight: 500;
-    }
-  </style>
+  <!-- SITE CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -175,29 +23,22 @@
     <nav class="navbar navbar-expand-lg container">
       <a class="navbar-brand logo" href="#">MovieVerse</a>
 
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#menu"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse justify-content-end" id="menu">
         <ul class="navbar-nav gap-3">
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html">Ana Sayfa</a>
+          <li class="nav-item"><a class="nav-link active" href="index.html">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="films.html">Filmler</a></li>
+          <li class="nav-item"><a class="nav-link" href="plans.html">Planlar</a></li>
+          <li class="nav-item" id="loginNavItem">
+        <a class="nav-link" href="login.html">Giriş Yap</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="films.html">Filmler</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="plans.html">Planlar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="admin.html">Yönetim Paneli</a>
-          </li>
+          <li class="nav-item" id="logoutNavItem" style="display:none;">
+  <a class="nav-link" href="#" id="logoutBtn">Çıkış</a>
+</li>
+
         </ul>
       </div>
     </nav>
@@ -304,6 +145,68 @@
       </div>
     </div>
   </section>
+<!-- FILM ISTATISTIKLERI (HTML TABLE) -->
+  <section class="container py-5">
+    <h3 class="text-center mb-4" style="color:#ff3333;">
+      🎞️ MovieVerse Film Kütüphanesi Özeti
+    </h3>
+
+    <div class="table-responsive">
+      <table class="table table-dark table-striped table-bordered align-middle text-center">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Film Adı</th>
+            <th>Tür</th>
+            <th>Yapım Yılı</th>
+            <th>IMDb Puanı</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Interstellar</td>
+            <td>Bilim Kurgu / Dram</td>
+            <td>2014</td>
+            <td>8.7</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>The Dark Knight</td>
+            <td>Aksiyon / Suç</td>
+            <td>2008</td>
+            <td>9.0</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Inception</td>
+            <td>Bilim Kurgu / Gerilim</td>
+            <td>2010</td>
+            <td>8.8</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Joker</td>
+            <td>Dram / Suç</td>
+            <td>2019</td>
+            <td>8.4</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Parasite</td>
+            <td>Dram / Gerilim</td>
+            <td>2019</td>
+            <td>8.5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-center text-secondary mt-3">
+      * Bu tablo MovieVerse platformunda öne çıkan film türleri ve örnek içerikler hakkında
+      genel bir bilgilendirme amacıyla hazırlanmıştır.
+    </p>
+  </section>
 
   <!-- FOOTER -->
   <footer class="site-footer">
@@ -315,5 +218,33 @@
 
   <!-- BOOTSTRAP JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  const SESSION_KEY = "mv_session";
+
+  const loginItem  = document.getElementById("loginNavItem");
+  const logoutItem = document.getElementById("logoutNavItem");
+  const logoutBtn  = document.getElementById("logoutBtn");
+
+  const session = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
+
+  if (session && session.email) {
+    // giriş yapılmış
+    if (loginItem) loginItem.style.display = "none";
+    if (logoutItem) logoutItem.style.display = "block";
+  } else {
+    // giriş yapılmamış
+    if (loginItem) loginItem.style.display = "block";
+    if (logoutItem) logoutItem.style.display = "none";
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem(SESSION_KEY);
+      window.location.href = "login.html";
+    });
+  }
+</script>
+
 </body>
 </html>
